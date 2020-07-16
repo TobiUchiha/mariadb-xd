@@ -1,17 +1,26 @@
-const Discord = require('discord.js');
-const client = new Discord.Client()
-const token = 'NjcxNzQwNDQxMzUxNDIxOTk0.XwAK2A.HXh_2J67wX5_ZH1yOrEryQOwcZc'
+/*
+ ===================================================================================
+|    ____                    _ __          __           __  ___      _____       __ |
+|   / __ \___ _      _______(_) /____     / /_____     /  |/  /_  __/ ___/____ _/ / |
+|  / /_/ / _ \ | /| / / ___/ / __/ _ \   / __/ __ \   / /|_/ / / / /\__ \/ __ `/ /  |
+| / _, _/  __/ |/ |/ / /  / / /_/  __/  / /_/ /_/ /  / /  / / /_/ /___/ / /_/ / /   |
+|/_/ |_|\___/|__/|__/_/  /_/\__/\___/   \__/\____/  /_/  /_/\__, //____/\__, /_/    |
+|                                                          /____/         /_/       |
+ ===================================================================================
+ */
 
-client.function = new Discord.Collection();
 
-let props = require(`./nitro.js`);
-client.function.set('nitroGen', props);
-
-
-client.on('ready', async() => {
-client.function.get('nitroGen').execute(client);
- 
-    console.log(`Iniciado como ${client.user.tag} :D`)
+const mariadb = require('mariadb');
+mariadb.createConnection({
+	user: "root",
+	database: "db",
+	host: "localhost",
+	port: 3306
 })
-
-client.login(token)
+.then(conn => {
+	console.log('Connected!!')
+	conn.end()
+})
+.catch(err => {
+	console.log('Error: ' + err.message)
+})
