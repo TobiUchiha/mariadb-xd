@@ -15,6 +15,7 @@ mariadb.createConnection({
 	user: "root",
 	database: "db",
 	host: "localhost",
+socketPath: '/var/run/mysqld/mysqld.sock',
 	port: 3306
 })
 .then(conn => {
